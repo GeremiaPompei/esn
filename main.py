@@ -9,7 +9,7 @@ from esn import ESN
 def predict_loss_plot(model, X, Y):
     # predictions
     start = time.time()
-    predictions = np.array([p for p, _ in [model.predict(x[0], times=len(x)) for x in X]])
+    predictions = np.array([p for p in [model.predict(x[0], times=len(x)) for x in X]])
     end = time.time()
     print('prediction', end - start, 'seconds')
 
@@ -38,7 +38,7 @@ def main():
 
         # model initialization
         start = time.time()
-        model = ESN(X_TR.shape[-1], n_reservoir=100)
+        model = ESN(X_TR.shape[-1], Y_TR.shape[-1], n_reservoir=1000)
         end = time.time()
         print('model initialization', end - start, 'seconds')
 
